@@ -78,6 +78,7 @@ DATABASES = {
         'NAME': os.environ.get('DATABASES_NAME', 'citus_exp'),
         'USER': os.environ.get('DATABASES_USER', 'postgres'),
         'PASSWORD': os.environ.get('DATABASES_PASSWORD', 'postgres'),
+        'DISABLE_SERVER_SIDE_CURSORS': True,
     }
 }
 

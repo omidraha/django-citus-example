@@ -96,3 +96,27 @@ Currently Citus supports foreign keys in two cases;
 django.db.utils.NotSupportedError: cannot create constraint on "ads_campaign"
 DETAIL:  Distributed relations cannot have UNIQUE, EXCLUDE, or PRIMARY KEY constraints that do not include the partition column (with an equality operator if EXCLUDE).
 
+Example models:
+
+```
+class Company(models.Model):
+    name = models.CharField(max_length=512)
+    users = models.ManyToManyField(User)
+    created_at = models.DateTimeField(auto_created=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
+
+class Campaign(models.Model):
+    class Meta:
+        unique_together = (('id', 'company'),)
+
+    name = models.CharField(max_length=512)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_created=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
+```
+
+Because there is a builtin `id` field on the `Campaign` model, that is a `primary key` field.
+
+

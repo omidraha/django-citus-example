@@ -13,11 +13,4 @@ class Migration(migrations.Migration):
         migrations.RunSQL(
             "SELECT create_distributed_table('ads_company', 'id')"
         ),
-        migrations.RunSQL(
-            "SELECT create_distributed_table('ads_campaign', 'company_id')"
-        ),
-        migrations.RunSQL(
-            "SELECT create_distributed_table('ads_ads', 'company_id')"
-        ),
-
     ]
