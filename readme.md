@@ -18,7 +18,7 @@ Example of usage Django and Citus.
 
 ```
 
-3. Register `workers` for this `citus_exp` db
+3. Register `workers` on `master` for this `citus_exp` db
 
 ```
     $ psql -d citus_exp -c "SELECT * from master_add_node('w1', 5432);"
@@ -121,4 +121,30 @@ class Campaign(models.Model):
 
 Because there is a builtin `id` field on the `Campaign` model, that is a `primary key` field.
 
+6.  When you want to add `user` to `company` , while `company` has one many to many field to `user`:
 
+
+```
+user = User.objects.first()
+now = timezome.now()
+company = Company.objects.create(name='c1', created_at=now)
+company.users.add(user)
+```
+
+
+```
+InternalError: consistency check on SPI tuple count failed
+CONTEXT:  SQL statement "SELECT 1 FROM ONLY "public"."ads_company" x WHERE "id" OPERATOR(pg_catalog.=) $1 FOR KEY SHARE OF x"
+```
+
+
+Example model:
+
+```
+class Company(models.Model):
+    name = models.CharField(max_length=512)
+    users = models.ManyToManyField(User)
+    created_at = models.DateTimeField(auto_created=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
+```
