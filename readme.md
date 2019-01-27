@@ -93,8 +93,10 @@ Currently Citus supports foreign keys in two cases;
 
 5. `"SELECT create_distributed_table('ads_campaign', 'company_id')"`
 
+```
 django.db.utils.NotSupportedError: cannot create constraint on "ads_campaign"
 DETAIL:  Distributed relations cannot have UNIQUE, EXCLUDE, or PRIMARY KEY constraints that do not include the partition column (with an equality operator if EXCLUDE).
+```
 
 Example models:
 

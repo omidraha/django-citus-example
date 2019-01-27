@@ -34,14 +34,6 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='Click',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('clicked_at', models.DateTimeField(auto_created=True)),
-                ('ads', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ads.Ads')),
-            ],
-        ),
-        migrations.CreateModel(
             name='Company',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
@@ -50,11 +42,6 @@ class Migration(migrations.Migration):
                 ('updated_at', models.DateTimeField(auto_now_add=True)),
                 ('users', models.ManyToManyField(to=settings.AUTH_USER_MODEL)),
             ],
-        ),
-        migrations.AddField(
-            model_name='click',
-            name='company',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ads.Company'),
         ),
         migrations.AddField(
             model_name='campaign',
@@ -70,10 +57,6 @@ class Migration(migrations.Migration):
             model_name='ads',
             name='company',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ads.Company'),
-        ),
-        migrations.AlterUniqueTogether(
-            name='click',
-            unique_together={('id', 'company')},
         ),
         migrations.AlterUniqueTogether(
             name='campaign',

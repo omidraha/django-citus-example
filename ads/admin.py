@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from ads.models import Company, Click, Ads, Campaign
+from ads.models import Company, Ads, Campaign
 
 
 @admin.register(Company)
@@ -16,11 +16,6 @@ class CampaignAdmin(admin.ModelAdmin):
 
 @admin.register(Ads)
 class AdsAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(Click)
-class ClickAdmin(admin.ModelAdmin):
     pass
 
 

@@ -33,11 +33,3 @@ class Ads(models.Model):
     created_at = models.DateTimeField(auto_created=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 
-
-class Click(models.Model):
-    class Meta:
-        unique_together = (('id', 'company'),)
-
-    ads = models.ForeignKey(Ads, on_delete=models.CASCADE)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
-    clicked_at = models.DateTimeField(auto_created=True)
